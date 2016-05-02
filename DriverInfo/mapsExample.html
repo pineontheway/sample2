@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+src="http://maps.googleapis.com/maps/api/js">
+</script>
+<style>
+/*.map-info-window {
+    width:200px;
+    height:200px;
+}
+.gm-style-iw {
+  min-width: 325px; 
+}*/
+
+    section.profile {
+  position: relative;
+  width: 325px;
+  border: 1px solid #171a1f;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+section.profile::after {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 3%;
+  z-index: -1;
+  width: 94%;
+  height: 1px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+  content: '';
+}
+
+.profile-header {
+  height: 140px;
+  border-radius: 7px 7px 0 0;
+  overflow: hidden;
+  background: #e8decd;
+}
+.profile-header img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.profile-content {
+  padding: 0 0 10px 0;
+  border-radius: 0 0 5px 5px;
+  color: #e7e0cf;
+  text-align: center;
+  background: #2f363e;
+}
+.profile-content img {
+  margin-top: -75px;
+  width: 150px;
+  height: 150px;
+  border: 5px solid #e7e0cf;
+  border-radius: 100%;
+  background: #e7e0cf;
+}
+.profile-content h1 {
+  margin: 0 0;
+  font-size: 1em;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+}
+.profile-content p {
+  margin: 5px 0 0;
+  color: #b49e6b;
+  font-size: 0.8125em;
+  font-weight: 200;
+}
+
+.profile-button {
+  margin-top: 5px;
+  padding: 10px 20px;
+  min-width: 160px;
+  background: #c54b30;
+  border: 1px solid #171c22;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 0 #d16e59;
+  color: #e7e0cf;
+  font-family: inherit;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  -webkit-transition: background ease-out 0.15s;
+          transition: background ease-out 0.15s;
+}
+
+.profile-button:hover, 
+.profile-button:focus {
+  background: #ac422a;
+}
+
+.profile-button:focus {
+  outline: none;
+  box-shadow: inset 0 1px 0 0 #d16e59, 0 0 0 3px #e7e0cf;
+}
+
+.profile-button:active {
+  background: #943824;
+  -webkit-transition: none;
+          transition: none;
+}
+
+.profile-ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #171a1f;
+  border-radius: 0 0 7px 7px;
+  list-style: none;
+  background: #2f363e;
+}
+.profile-ul li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 50%;
+      -ms-flex: 0 1 50%;
+          flex: 0 1 50%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 1px solid #3e424d;
+  padding: 20px 10px;
+  color: #c54b30;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.profile-ul li + li {
+  border-left: 1px solid #171a1f;
+  box-shadow: -1px 0 0 #3e424d;
+}
+.profile-ul span {
+  display: inline-block;
+  margin-left: 0.4em;
+  color: #a9a9a9;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+html {
+  height: 100%;
+  background: #2d353d;
+}
+
+/*body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 20px;
+  min-height: 100%;
+  box-sizing: border-box;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: helvetica neue, sans-serif;
+  background: url("http://dir.agosto.nl/dump/profile.png");
+}*/
+</style>
+
+<script>
+var myCenter=new google.maps.LatLng(37.33615650107228,-121.88141653442108);
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:16,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var marker=new google.maps.Marker({
+  position:myCenter,
+  icon: 'uberCar.png',
+  });
+
+marker.setMap(map);
+
+var contentString = '<section class="profile">'+
+    '<div class="profile-header"><img src="car.jpg" alt=""></div>'+
+    '<div class="profile-content"><img src="driver.jpeg" alt="Portret of Sara Robertson">'+
+      '<h1>Robert</h1>'+
+      '<p>Tesla S</p>'+
+      '<button class="profile-button" type="button">Book a Ride</button>'+
+    '</div>'+
+    '<ul class="profile-ul" aria-label="Statistics">'+
+      '<li class="profile-ul"><img src="sedan.png" alt=""></div><span>1234567890</span></li>'+
+      '<li class="profile-ul"><img src="star.png" alt=""></div><span>4.5</span></li>'+
+    '</ul>'+
+  '</section>';
+
+var infowindow = new google.maps.InfoWindow({
+  content:contentString,
+  maxWidth: 325
+  });
+
+infowindow.open(map,marker);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="height:100vh;"></div>
+</body>
+</html>

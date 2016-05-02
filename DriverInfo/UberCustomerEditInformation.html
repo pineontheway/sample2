@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer UI Sample</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<style>
+		body {
+  margin: 0;
+  padding: 0;
+  font-family: 'roboto', arial, helvetica, sans-serif;
+  color: #444;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.3em;
+}
+* {
+  box-sizing: border-box;
+}
+.container{
+  padding: 0 5em 0 0;
+}
+.clear:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+p {
+  margin: 0;
+}
+p + p {
+  margin-top: .5em;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 1em;
+}
+.wrapper:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 300;
+}
+.main a {
+  border-bottom: 1px dotted;
+}
+.main a:hover {
+  border: transparent;
+}
+.three-col:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+@media (min-width: 768px) {
+  .three-col > * {
+    width: 33.333%;
+    float: left;
+  }
+}
+.button {
+  display: inline-block;
+  background: #c76d5b;
+  color: white;
+  padding: 1em 1.25em;
+  text-transform: uppercase;
+  font-weight: normal;
+  cursor: pointer;
+}
+.button:hover {
+  background: #341d34;
+}
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+  font-family: 'roboto condensed';
+  line-height: 1em;
+}
+.page-title {
+  float: left;
+  padding: 0 2em;
+}
+.page-title h1 {
+  margin: 15px 0 0px;
+}
+.page-title .breadcrumbs {
+  font-size: 14px;
+}
+.page-title .breadcrumbs > * {
+  opacity: .5;
+}
+.page-title .breadcrumbs > *:last-child {
+  opacity: .75;
+}
+.logo {
+  border-left: 10px #d36c54 solid;
+  background: #eedfcf;
+  width: 220px;
+  float: left;
+  padding: 1em;
+}
+@media (min-width: 768px) {
+  .user-panel {
+    float: right;
+    margin-top: 15px;
+  }
+  .user-panel a {
+    margin-left: 1em;
+  }
+}
+.user-panel a {
+  text-transform: uppercase;
+}
+.user-panel .accedi,
+.user-panel .portafogli,
+.user-panel .guida {
+  display: inline-block;
+  color: black;
+  margin: 0 5px;
+}
+.user-panel .accedi .icon,
+.user-panel .portafogli .icon,
+.user-panel .guida .icon {
+  background: url(http://i64.tinypic.com/25sc2s1.png) no-repeat;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+}
+.user-panel .accedi:hover,
+.user-panel .portafogli:hover,
+.user-panel .guida:hover {
+  opacity: .7;
+}
+.user-panel .portafogli .icon {
+  background-position: left top;
+}
+.user-panel .accedi .icon {
+  background-position: center top;
+}
+.user-panel .guida .icon {
+  background-position: right top;
+}
+@media (max-width: 767px) {
+  .user-panel {
+    padding: 5px 0 10px;
+    margin: auto;
+    text-align: center;
+  }
+}
+.main {
+  max-width: 600px;
+  padding: 1px 2em 2em 2em;
+  position: relative;
+  margin-left: 220px;
+}
+.main label {
+  font-weight: normal;
+  margin-left: .5em;
+}
+.main .option-block {
+  margin-top: 1em;
+  line-height: 1em;
+}
+.action-panel {
+  position: absolute;
+  top: -70px;
+  right: 0;
+  z-index: 1;
+}
+.action-panel .action {
+  margin: .5em;
+  width: 25px;
+  height: 25px;
+  font-size: 32px;
+  line-height: 25px;
+  display: inline-block;
+  cursor: pointer;
+}
+.action-panel .action.add {
+  background-position: left center;
+}
+.action-panel .action.edit {
+  background-position: center;
+}
+.action-panel .action.delete:hover {
+  color: #c00;
+}
+.action-panel .action:Hover {
+  opacity: .75;
+}
+.action-panel .action:active {
+  transform: scale(1.2);
+}
+aside {
+  border-left: 10px #60a1a0 solid;
+  background: #eedfcf;
+  width: 220px;
+  min-height: 650px;
+  float: left;
+}
+aside .main-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+aside .main-menu .icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+aside .main-menu a {
+  padding: 1em;
+  display: block;
+  text-decoration: none;
+  border-bottom: none;
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+aside .main-menu a.active,
+aside .main-menu a:hover {
+  background: #60a1a0;
+  color: white;
+  text-decoration: none;
+}
+aside .main-menu a.active:after {
+  width: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 33%;
+  right: 0px;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid white;
+}
+.footer {
+  text-align: center;
+  background: #341d34;
+  color: white;
+  padding: 75px 0;
+}
+@media (min-width: 768px) {
+  .footer .three-col > *:nth-child(1),
+  .footer .three-col > *:nth-child(3) {
+    width: 25%;
+  }
+  .footer .three-col > *:nth-child(2) {
+    width: 50%;
+  }
+}
+.footer .social-panel {
+  text-align: center;
+}
+.footer .social-panel a {
+  display: inline-block;
+  background: no-repeat center;
+  width: 60px;
+  height: 60px;
+  font-size: 32px;
+  line-height: 60px;
+}
+.footer .social-panel a:hover {
+  opacity: .5;
+  color: White;
+}
+.footer-info {
+  font-size: 12px;
+  margin: 1em 0;
+  line-height: 1.2em;
+}
+.quick-links {
+  text-align: center;
+  background: #341d34;
+  color: White;
+  padding: 20px 0;
+  border-top: 1px rgba(0, 0, 0, 0.2) solid;
+}
+.quick-links a {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.quick-links a + a {
+  margin-left: .5em;
+}
+
+	</style>
+
+</head>
+<body>
+
+	<script>
+		 WebFontConfig = {
+    google: { families: [ 'Roboto:400,300,700:latin','Roboto+Condensed::latin', 'Satisfy::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+	</script>
+
+	<section class="top clear">
+  <div class="logo">
+    <a href="http://www.qwish.it"><img src="http://i66.tinypic.com/1zp5wdd.png" width="50" /></a>
+  </div>
+  <div class="page-title">
+    <h1>Uber</h1>
+
+  </div>
+  <div class="user-panel">
+    <a class="portafogli" href="">
+      <div class="icon"></div>Portafogli</a>
+    <a class="accedi" href="">
+      <div class="icon"></div>Utente</a>
+    <a class="guida" href="">
+      <div class="icon"></div>Guida</a>
+  </div>
+</section>
+<section class="clear">
+  <aside>
+    <nav class="main-menu">
+      <ul>
+        <li><a href="#"><span class="icon ion-heart"></span>Amici</a></li>
+        <li><a href="#" class="active"><span class="icon ion-android-star"></span>Lista desideri</a></li>
+        <li><a href="#"><span class="icon ion-person-stalker"></span>Gruppi</a></li>
+        <li><a href="#"><span class="icon ion-ios-cart"></span>Negozi</a></li>
+        <li><a href="#"><span class="icon ion-email"></span>Messaggi</a></li>
+        <li><a href="#"><span class="icon ion-android-notifications"></span>Notifiche</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <section class="main">
+    <div class="container">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Pickup</th>
+        <th>Driver</th>
+        <th>Fare</th>
+        <th> Car</th>
+        <th>City</th>
+        <th>Payment Method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-toggle="collapse" data-target="#accordion1" class="clickable">
+        <td>11/10/15</td>
+        <td>John</td>
+        <td>$20</td>
+        <td>uberX</td>
+        <td>San Jose</td>
+        <td>PayPal</td>
+      </tr>
+      <tr>
+       <td colspan="6">
+       <div id="accordion1" class="collapse">Hidden by Default1</div>
+        </td>
+      </tr>
+      
+      <tr data-toggle="collapse" data-target="#accordion2" class="clickable">
+        <td>09/22/15</td>
+        <td>Jacob</td>
+        <td>$30</td>
+        <td>uberGO</td>
+        <td>San Francisco</td>
+        <td>Credit Card</td>
+      </tr>
+      <tr>
+       <td colspan="6">
+       <div id="accordion2" class="collapse">Hidden by Default2</div>
+        </td>
+      </tr>
+      <tr data-toggle="collapse" data-target="#accordion3" class="clickable">
+        <td>11/10/15</td>
+        <td>Jim</td>
+        <td>$50</td>
+        <td>uberX</td>
+        <td>Los Angeles</td>
+        <td>Credit Card</td>
+      </tr>
+      <tr>
+       <td colspan="6">
+       <div id="accordion3" class="collapse">Hidden by Default3</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </section>
+</section>
+
+<footer class="footer">
+  <div class="three-col">
+    <div><img src="http://i65.tinypic.com/vhff61.png" /></div>
+    <div class="footer-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat.</div>
+    <div>
+      <div class="social-panel">
+        <a href="" class="facebook ion-social-facebook"></a>
+        <a href="" class="twitter ion-social-twitter"></a>
+        <a href="" class="google-plus ion-social-googleplus"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="quick-links">
+  <div class="wrapper">
+    <a href="">Guida</a>
+    <a href="">F.A.Q.</a>
+    <a href="">Chi siamo</a>
+    <a href="">Contatti</a>
+  </div>
+</div>
+
+</body>
+</html>
